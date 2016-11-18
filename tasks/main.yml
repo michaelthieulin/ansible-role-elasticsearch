@@ -1,4 +1,15 @@
 ---
+- name: Include versions variables.
+  include_vars: "versions.yml"
+
+- name: Define elasticsearch_version.
+  set_fact:
+    elasticsearch_version: "{{ __elasticsearch_version }}"
+  when: elasticsearch_version is not defined
+
+- fail: msg="Unsupported Elasticsearch version {{ elasticsearch_version }}. Acceptable versions are {{ ', '.join(__elasticsearch_acceptable_versions) }}"
+  when: elasticsearch_version not in __elasticsearch_acceptable_versions
+
 - include: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
 

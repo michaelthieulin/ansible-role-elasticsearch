@@ -1,4 +1,5 @@
 ---
+source_list_file_name: elasticsearch-debian
 elasticsearch_network_host: localhost
 elasticsearch_http_port: 9200
 elasticsearch_script_inline: true
